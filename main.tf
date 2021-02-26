@@ -14,6 +14,11 @@ terraform {
   
 }
 
+variable imagebuild {
+  type        = string 
+  description = "Latest Image build"
+}
+
 
 resource "azurerm_resource_group" "tf_test"{
 name = "tfmainrg"
@@ -31,7 +36,7 @@ ip_address_type     = "public"
 
   container {
       name = "weatherapi"
-      image = "malek1988/weatherapi"
+      image = "malek1988/weatherapi:${var.imagebuild}"
       cpu = "1"
       memory = "1"
 
